@@ -49,6 +49,7 @@ Understanding this dynamic can help food brands and health professionals tailor 
 ## Data Cleaning and Exploratory Data Analysis
 
 to make my analysis quicker and more convenient i conducted the following data cleaning steps:
+
 Step 1: Left merge the recipes and interactions datasets together
 
 Step 2: Fill all ratings of 0 with np.nan - this makes initive sense becuase a score of 0 on a scale of 1 - 5 indicates that its a comment rather than a review and should not be included in the ratings 
@@ -70,7 +71,8 @@ Step 9: create protein dense column based of prop_protein being above the averag
 ### Univariate analyses: distribution of protein among all recipes in dataframe 
 
 
-### bivariate analyses: distribution of rating conditional on protein density in da#taframe 
+### bivariate analyses: distribution of rating conditional on protein density in dataframe 
+
 
 ### Interesting Aggregates (proportion of protein by number of ingredients)
 
