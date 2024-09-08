@@ -127,6 +127,16 @@ columns with missing values are `'name'`, `'discription'`, `'average_ratings'`, 
 
 ### Missingness Dependency
 
+> Proportion of protein and Rating
+
+
+**Null Hypothesis:** The missingness of average_rating does not depend on the proportion of protein in the recipe.
+
+**Alternate Hypothesis:** The missingness of average_rating does depend on the proportion of protein in the recipe.
+
+**Test Statistic:** The absolute difference of mean in the proportion of protein of the distribution of the group without missing average_rating and the distribution of the group without missing average_rating.
+
+**Significance Level:** 0.05
 
 
 <iframe
@@ -136,7 +146,7 @@ columns with missing values are `'name'`, `'discription'`, `'average_ratings'`, 
   frameborder="0"
 ></iframe>
 
-We ran a permutation test by shuffling the missingness of rating for 1000 times to collect 1000 simulating mean differences in the two distributions as described in the test statistic.
+We ran a permutation test by shuffling the missingness of average_rating for 1000 times to collect 1000 simulating mean differences in the two distributions as described in the test statistic.
 
 
 <iframe
@@ -146,7 +156,17 @@ We ran a permutation test by shuffling the missingness of rating for 1000 times 
   frameborder="0"
 ></iframe>
 
-the observed statisitc of .010 is indicated by the red vertical dotted line. since the pvalue we found (0.0) is < than .05 we reject the null hyptohesis. meaning that the missingness for average rating is being effected by the column prop_protein 
+the observed statisitc of .010 is indicated by the red vertical dotted line. since the pvalue we found (0.0) is < than .05 we reject the null hyptohesis. meaning that the missingness for average_rating is being effected by the column prop_protein 
+
+> Minutes and Rating
+
+**Null Hypothesis:** The missingness of ratings does not depend on the cooking time of the recipe in minutes.
+
+**Alternate Hypothesis:** The missingness of ratings does depend on the cooking time of the recipe in minutes.
+
+**Test Statistic:** The absolute difference of mean in cooking time of the recipe in minutes of the distribution of the group without missing ratings and the distribution of the group without missing ratings.
+
+**Significance Level:** 0.05
 
 
 
@@ -167,13 +187,20 @@ We ran another permutation test by shuffling the missingness of rating for 1000 
   frameborder="0"
 ></iframe>
 
-the observed statisitc of 117.34 is indicated by the red vertical dotted line. since the pvalue we found (.031) is < than .05 we reject the null hyptohesis. meaning that the missingness for average rating is being effected by the column minutes 
+the observed statisitc of 117.34 is indicated by the red vertical dotted line. since the pvalue we found (.031) is < than .05 we reject the null hyptohesis. meaning that the missingness for average rating is being effected by the cooking time 
 
 ---
 
 ## Hypothesis Testing
 
-im going to explore whether people rate protein dense recipes and non-protein dense recipes equally
+**Null Hypothesis:** People rate all the recipes on the same scale.
+
+**Alternative Hypothesis:** People rate protein dense recipes higher than non-protein recipes.
+
+**Test Statistic:** The difference in mean between rating of protein dense recipes and non-protein dense recipes.
+
+**Significance Level:** 0.05
+
 
 
 <iframe
