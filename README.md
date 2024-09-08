@@ -86,7 +86,7 @@ The cleaned dataframe ended up with 83782 rows and 23 columns. Here are the firs
 ### Univariate analyses: distribution of protein among all recipes in dataframe 
 
 <iframe
-  src="assets/univariate.html"
+  src="assets/Univariate.html"
   width="800"
   height="600"
   frameborder="0"
@@ -108,7 +108,7 @@ The cleaned dataframe ended up with 83782 rows and 23 columns. Here are the firs
 
 
 <iframe
-  src="assets/interesting_agg.html"
+  src="assets/Interesting Aggregates.html"
   width="800"
   height="600"
   frameborder="0"
@@ -127,9 +127,45 @@ columns with missing values are `'name'`, `'discription'`, `'average_ratings'`, 
 
 ### Missingness Dependency
 
+
+
+<iframe
+  src="assets/prop_missingness.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+We ran a permutation test by shuffling the missingness of rating for 1000 times to collect 1000 simulating mean differences in the two distributions as described in the test statistic.
+
+
+<iframe
+  src="assets/permutation1.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 the observed statisitc of .010 is indicated by the red vertical dotted line. since the pvalue we found (0.0) is < than .05 we reject the null hyptohesis. meaning that the missingness for average rating is being effected by the column prop_protein 
 
 
+
+<iframe
+  src="assets/mins_missingness.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+We ran another permutation test by shuffling the missingness of rating for 1000 times to collect 1000 simulating mean differences in the two distributions as described in the test statistic.
+
+
+<iframe
+  src="assets/permutation2.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 the observed statisitc of 117.34 is indicated by the red vertical dotted line. since the pvalue we found (.031) is < than .05 we reject the null hyptohesis. meaning that the missingness for average rating is being effected by the column minutes 
 
@@ -140,14 +176,21 @@ the observed statisitc of 117.34 is indicated by the red vertical dotted line. s
 im going to explore whether people rate protein dense recipes and non-protein dense recipes equally
 
 
+<iframe
+  src="assets/hypothesis_test.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 
 
-conclusion of permutation  test 
+#### conclusion of permutation test 
+
 since the pvalue we found (0.0) is less than the the significance level of .05 we reject the null hypothesis meaning that people are not rating protein dense recipes the same as non protein dense recipes. a possibe reason for this is that outcome is that this trend of health consciuous recipes is a very recent trend and has not been adpoted on a mass scale. 
 
 ---
----
+
 
 ## Framing a Prediction Problem
 
@@ -163,21 +206,21 @@ i will be using the f1 score instead of accuracy since in our dataset, the ratin
 the infomation we have available prior to making our predictions is all the columns of the rating datasets which are listed in the introduction section. since all those columns are features, we would have acess to them regardless if they have been rated. 
 
 ---
----
+
 
 ## Baseline Model
 
 
 
 ---
----
+
 
 ## Final Model
 
 
 
 ---
----
+
 
 ## Fairness Analysis
 
