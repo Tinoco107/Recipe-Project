@@ -14,31 +14,32 @@ eating habits but also our subjective evaluations of what constitutes a "good" r
 
 The first dataset, *recipes*,  contains 83782 rows, each row representing a unique recipe, with 12 columns outlined below:
 
-| Column          | Description                                           |
-|-----------------|-------------------------------------------------------|
-| '**name**'          | Recipe name                                           |
-| '**id**'            | Recipe ID                                             |
-| '**minutes**'       | Minutes to prepare recipe                             |
-| '**contributor_id**'| User ID who submitted this recipe                     |
-| '**submitted**'     | Date recipe was submitted                             |
-| '**tags**'          | Food.com tags for recipe                              |
-| '**nutrition**'     | Nutrition information in the form [calories (#), total fat (PDV), sugar (PDV), sodium (PDV), protein (PDV), saturated fat (PDV), carbohydrates (PDV)]; PDV stands for “percentage of daily value”   |
-| '**n_steps**'       | Number of steps in recipe                             |
-| '**steps**'         | Text for recipe steps, in order                       |
-| '**description**'   | User-provided description                             |
-| '**ingredients**'   | Text for recipe ingredients                           |
-| '**n_ingredients**' | Number of ingredients in recipe                       |
 
+| Column          | Description                                           |
+|:-----------------|:-------------------------------------------------------|
+| `'name'`          | Recipe name                                           |
+| `'id'`            | Recipe ID                                             |
+| `'minutes' `      | Minutes to prepare recipe                             |
+| `'contributor_id'`| User ID who submitted this recipe                     |
+| `'submitted'`     | Date recipe was submitted                             |
+| `'tags'  `        | Food.com tags for recipe                              |
+| `'nutrition' `    | Nutrition information in the form [calories (#), total fat (PDV),sugar (PDV), sodium (PDV), protein (PDV), saturated fat (PDV), carbohydrates (PDV)]; PDV stands for “percentage of daily value”  |
+| `'n_steps'`       | Number of steps in recipe                             |
+| `'steps'`        | Text for recipe steps, in order                       |
+| `'description'`   | User-provided description                             |
+| `'ingredients'`   | Text for recipe ingredients                           |
+| `'n_ingredients'` | Number of ingredients in recipe                       |
 
 the second dataset, *interactions*, contains 731927 rows, each corisponding to a review by a user on a specfic recipe. the five columns are described as follows: 
 
 | Column      | Description            |
-|-------------|------------------------|
-| '**user_id**'   | User ID                |
-| '**recipe_id**' | Recipe ID              |
-| '**date**'      | Date of interaction    |
-| '**rating**'    | Rating given           |
-| '**review**'    | Review text            |
+|:-------------|:------------------------|
+| `'user_id' `  | User ID                |
+|` 'recipe_id'` | Recipe ID              |
+| `'date'  `    | Date of interaction    |
+| `'rating' `   | Rating given           |
+| `'review'`    | Review text            |
+
 
  **im going to explore whether people rate protein dense recipes and non-protein dense recipes equally**. to do this im going to break down the values of the **nutrition** column into their own respective columns. im also going to calculate the proportion of protein in terms of the calories of a given recipe and store the information in a new column, "**prop_protein**". protein dense in this context will be referring to recipes with a value of **prop_protein** greater than the average value of **prop_protein**. the columns that will be most useful in answering my question will be **calories (#)**, **protein (PDV)**, **prop_protein** and **average_rating** 
 
@@ -48,45 +49,80 @@ Understanding this dynamic can help food brands and health professionals tailor 
 ---
 ## Data Cleaning and Exploratory Data Analysis
 
-to make my analysis quicker and more convenient i conducted the following data cleaning steps:
+To make my analysis quicker and more convenient i conducted the following data cleaning steps:
 
-Step 1: Left merge the recipes and interactions datasets together
+1. Left merge the recipes and interactions datasets together
+   - matches recipes to their ratings and reviews
 
-Step 2: Fill all ratings of 0 with np.nan - this makes initive sense becuase a score of 0 on a scale of 1 - 5 indicates that its a comment rather than a review and should not be included in the ratings 
+1. Fill all ratings of 0 with np.nan
+   - this makes initive sense becuase a score of 0 on a scale of 1 - 5 indicates that its a comment rather than a review and should not be included in the ratings 
 
-Step 3: Find the average rating per recipe
+1. Find the average rating per recipe
 
-Step 4: Add this Series containing the average rating per recipe back to the recipes dataset
+1. Add this Series containing the average rating per recipe back to the recipes dataset
 
-Step 5: Split the 'nutrition' column into separate components
+1. Split the 'nutrition' column into separate components
 
-Step 6: create high protein boolean column
+1. Create high protein boolean column
 
-Step 7: create prop_protein column and handles instances of 0 calorie or protein recipes
+1. Create prop_protein column and handles instances of 0 calorie or protein recipes
 
-Step 8: update submitted column to be datetimes type
+1. Update submitted column to be datetimes type
 
-Step 9: create protein dense column based of prop_protein being above the average
+1. create protein dense column based of prop_protein being above the average
+
+The cleaned dataframe ended up with 83782 rows and 23 columns. Here are the first 5 rows of ~unique recipes of the cleaned dataframe for illustration. Since there is a lot of columns in the dataframe, i selected the columns that are most relevant to our questions for display. Scroll right to view more columns.
+
+
+| name                               |   id   |  minutes  |      submitted      | average_rating | calories (#) | protein (PDV) | prop_protein | is_protein_dense | 
+|:-----------------------------------|-------:|----------:|:--------------------|---------------:|-------------:|--------------:|-------------:|:-----------------|
+| 1 brownies in the world best ever  | 333281 |        40 | 2008-10-27 00:00:00 |            4.0 |        138.4 |           3.0 |         0.04 | False            |   
+| 1 in canada chocolate chip cookies | 453467 |        45 | 2011-04-11 00:00:00 |            5.0 |        595.1 |          13.0 |         0.04 | False            | 
+| 412 broccoli casserole             | 306168 |        40 | 2008-05-30 00:00:00 |            5.0 |        194.8 |          22.0 |         0.23 | True             | 
+| millionaire pound cake             | 286009 |       120 | 2008-02-12 00:00:00 |            5.0 |        878.3 |          20.0 |         0.05 | False            |   
+| 2000 meatloaf                      | 475785 |        90 | 2012-03-06 00:00:00 |            5.0 |        267.0 |          29.0 |         0.22 | True             |   
+
 
 ### Univariate analyses: distribution of protein among all recipes in dataframe 
+
+<iframe
+  src="assets/univariate.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 
 ### bivariate analyses: distribution of rating conditional on protein density in dataframe 
 
 
+<iframe
+  src="assets/bivariate.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+
 ### Interesting Aggregates (proportion of protein by number of ingredients)
 
 
+<iframe
+  src="assets/interesting_agg.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 ---
 
 ## Assessment of Missingness
 
-columns with missing values are name, discription, and average_ratings, and prop_protein
+columns with missing values are `'name'`, `'discription'`, `'average_ratings'`, and `'prop_protein'`
 
 ### NMAR Analysis
 
-average_ratings is NMAR this makes intuitive sense, the average rating of any given recipe can be missing if there are no ratings to average. given that the original recipe is only a subset of data from 2008 and still has 83782 unique recipes it make perfect sense to for a subset of those recipes to have no ratings and therefore be missing a value for average rating. 
+`'average_ratings'` is NMAR this makes intuitive sense, the average rating of any given recipe can be missing if there are no ratings to average. given that the original recipe is only a subset of data from 2008 and still has 83782 unique recipes it make perfect sense to for a subset of those recipes to have no ratings and therefore be missing a value for average rating. 
 
 
 ### Missingness Dependency
