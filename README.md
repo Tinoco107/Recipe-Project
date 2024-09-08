@@ -1,7 +1,7 @@
 # RecipeProject
 This is a project for DSC 80 at UCSD 
 
-# Introduction
+## Introduction
 ## Data Cleaning and Exploratory Data Analysis
 ## Assessment of Missingness
 ## Hypothesis Testing
